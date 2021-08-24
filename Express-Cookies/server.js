@@ -7,11 +7,20 @@ let Count = 0;
 app.set('view engine', 'hbs')
 app.use(express.static(__dirname + '/views'))
 
+// app.use(expressSession({
+// resave and saveUninitailized are compulsary to write in expressSession
+//   resave: false,          //saves the cookie on each client <---> communication
+//   saveUninitialized: false, // save cookie even if nothing to track
+//   secret:'Some long Random String Here', // used to encrypt the cookie
+// }))
+
+
 app.use(expressSession({
     // resave and saveUninitailized are compulsary to write in expressSession
-  resave: false,          //saves the cookie on each client <---> communication
-  saveUninitialized: false, // save cookie even if nothing to track
+  resave: true,          //saves the cookie on each client <---> communication
+  saveUninitialized: true, // save cookie even if nothing to track
   secret:'Some long Random String Here', // used to encrypt the cookie
+  name: "Cookies are Awesome" , // gives an name of the cookie
 }))
 app.get('/', (req,res) => {
     Count++;
